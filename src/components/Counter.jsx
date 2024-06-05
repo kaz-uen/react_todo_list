@@ -13,14 +13,16 @@ const SFooterText = styled.p`
 `;
 
 const Counter = () => {
-  const { amount, completedCount, incompletedCount } = useSelector((store) => {
-    return store.todo;
-  });
+  const { todoItemsData } = useSelector((store) => store.todo);
+
+  const getTodoItemAmount = (todos) => todos.length || 0;
+  const getCompletedTodoItemCount = (todos) => todos.filter(todoItem => todoItem.completed === true).length || 0;
+  const getIncompletedTodoItemCount = (todos) => todos.filter(todoItem => todoItem.completed === false).length || 0;
 
   return (
     <SFooter>
-      <SFooterText>Todoアイテム数: {amount}</SFooterText>
-      <SFooterText>完了済み: {completedCount} / 未完了: {incompletedCount}</SFooterText>
+      <SFooterText>Todoアイテム数: {getTodoItemAmount(todoItemsData)}</SFooterText>
+      <SFooterText>完了済み: {getCompletedTodoItemCount(todoItemsData)} / 未完了: {getIncompletedTodoItemCount(todoItemsData)}</SFooterText>
     </SFooter>
   )
 };

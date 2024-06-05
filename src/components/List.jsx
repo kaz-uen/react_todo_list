@@ -120,7 +120,7 @@ const SResetButton = styled.button`
 
 
 const List = () => {
-  const { todoItemsData, amount } = useSelector((store) => store.todo);
+  const { todoItemsData } = useSelector((store) => store.todo);
 
   // ローカルストレージにTodo保存
   useEffect(() => {
@@ -151,7 +151,7 @@ const List = () => {
     }
   };
 
-  if (amount === 0) {
+  if (todoItemsData.length === 0) {
     return (
       <SComment>
         <SCommentText>現在タスクはありません。</SCommentText>
